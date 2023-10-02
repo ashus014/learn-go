@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var conferenceName string = "Go conference"
@@ -41,15 +44,20 @@ func main() {
 	
 		fmt.Print("Enter no. of tickets :: ")
 		fmt.Scan(&userTicket)
+
+		if userTicket > remainingTickets {
+			fmt.Printf("We only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTicket)
+			continue
+		}
 	
 		remainingTickets = remainingTickets - userTicket
 		// bookings[0] = firstName + " " + lastName
 		bookings = append(bookings, firstName + " " + lastName)
 	
-		fmt.Printf("The whole slice : %v\n", bookings)
-		fmt.Printf("The first value : %v\n", bookings[0])
-		fmt.Printf("Slice type : %T\n", bookings)
-		fmt.Printf("Slice length: %v\n", len(bookings))
+		// fmt.Printf("The whole slice : %v\n", bookings)
+		// fmt.Printf("The first value : %v\n", bookings[0])
+		// fmt.Printf("Slice type : %T\n", bookings)
+		// fmt.Printf("Slice length: %v\n", len(bookings))
 	
 	
 		fmt.Printf("Thankyou %v %v for booking %v tickets. You'll receive a confirmation email address at %v\n", firstName, lastName, userTicket, email)
@@ -58,7 +66,17 @@ func main() {
 		// fmt.Println("Memory location of userName Variable", &firstName)
 	
 		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
-	}
 
-	
+		firstNames := []string{}
+		for _, booking := range bookings {
+			var names = strings.Fields(booking)
+			firstNames = append(firstNames, names[0])
+		}
+		fmt.Printf("First Names: %v\n", firstNames)
+
+		if remainingTickets == 0 {
+			fmt.Println("Our conference is booked out. Come back next year.")
+			break
+		}
+	}
 }
