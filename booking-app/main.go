@@ -12,6 +12,8 @@ func main() {
 	conferenceTickets := 50
 	var remainingTickets uint = 50
 
+	greetUsers(conferenceName)
+
 	fmt.Printf("conferenceName is %T type\n conferenceTickets is %T type\n remainingTickets is %T type\n", conferenceName, conferenceTickets, remainingTickets)
 
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
@@ -44,6 +46,11 @@ func main() {
 	
 		fmt.Print("Enter no. of tickets :: ")
 		fmt.Scan(&userTicket)
+
+		// isValidName :=  len(firstName) >= 2 && len(lastName) >= 2
+		// isValidEmail := strings.Contains(email, "@")
+		// isValidTicketNumber := userTicket > 0 && userTicket <= remainingTickets
+		// isValidCity := city == "Singapore" || city == "London"
 
 		if userTicket > remainingTickets {
 			fmt.Printf("We only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTicket)
@@ -79,4 +86,8 @@ func main() {
 			break
 		}
 	}
+}
+
+func greetUsers(confName string) {
+	fmt.Printf("Welcome to %v booking application", confName)
 }
