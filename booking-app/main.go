@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -90,4 +91,13 @@ func main() {
 
 func greetUsers(confName string) {
 	fmt.Printf("Welcome to %v booking application", confName)
+}
+
+func workingWithMaps() {
+	var userData = make(map[string]string);
+	userData["firstName"] = "Ashu"
+	userData["lastName"] = "Singh"
+	userData["email"] = "ashu@email.com"
+	userData["noOfTickets"] = strconv.FormatUint(uint64(50), 10)
+	
 }
